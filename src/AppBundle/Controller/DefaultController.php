@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -10,6 +11,9 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @Method({"GET"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
@@ -19,8 +23,17 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function homeAction(Request $request)
+    /**
+     * @Route("/hello/{name}", name="app_default_hello")
+     * @Method({"GET"})
+     * @param Request $request
+     * @param string $name
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function helloAction(Request $request, string $name)
     {
-        die('salut page home');
+        return $this->render('default/hello.html.twig', [
+            'name' => $name
+        ]);
     }
 }
