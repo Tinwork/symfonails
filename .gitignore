@@ -17,6 +17,6 @@
 /web/bundles/
 
 docker-compose.yml
-bin/symfony_requirements
-composer.lock
-docker
+.idea
+/docker/nginx/log
+/docker/mysql/
