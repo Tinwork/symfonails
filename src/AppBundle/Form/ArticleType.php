@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class ArticleType extends AbstractType {
 
@@ -33,10 +35,16 @@ class ArticleType extends AbstractType {
             'label' => 'Description',
             'required' => true
         ])
+        // tags
+        ->add('tags', CollectionType::class, [
+            'entry_type' => TagType::class,
+            'entry_options' => array('label' => false),
+        ])
         // Submit
         ->add('Submit', SubmitType::class, [
             'label' => 'Ajouter'
         ]);
+               
     }
 
     public function configureOptions(OptionsResolver $resolver) {

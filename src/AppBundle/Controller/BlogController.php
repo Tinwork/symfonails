@@ -7,12 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Tag;
 use AppBundle\Form\ArticleType;
 
 class BlogController extends controller {
 
     public function __construct() {
-
+        $this->tag = new Tag();
     }
 
     /** 
@@ -25,7 +26,7 @@ class BlogController extends controller {
     }
 
     /** 
-     * @route("/", name="front_article_create")
+     * @route("/blog/create", name="front_article_create")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request) {
@@ -36,9 +37,16 @@ class BlogController extends controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $article->setCreatedAt();
+            // Set the tag
+            $this->tag->setTag($article->getTitle());
+            $article->setTags($this->tag);
+
             // retrieve the orm system
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
+            $em->flush();
+
+            $em->persist($this->tag);
             $em->flush();
 
             $this->addFlash('sucess', "L'article {$article->getTitle()} a été crée");
@@ -65,6 +73,25 @@ class BlogController extends controller {
         return $this->render('blog/list.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             'articles'  => $article
+        ]);
+    }
+
+    /**
+     * @route("/blog/articles/{tagID}", name="blog_show_article_by_tag")
+     * @Method({"GET", "POST"})
+     */
+    public function showByTagAction(Request $request, $tagID) {
+        $tag = $this->getDoctrine()
+            ->getRepository(Tag::Class)
+            ->findOneById($tagID);
+
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findByTags($tag);
+
+        return $this->render('blog/list.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'articles' => $articles
         ]);
     }
 

@@ -14,6 +14,10 @@ blog_stop_dev:
     path:     /blog
     defaults:  { _controller: AppBundle:Blog:create }
 
+blog_show_article_by_tag:
+    path:    /blog/articles/{tagID}
+    defaults: { _controller: AppBundle:Blog:showByTag }
+
 admin_article_index:
     path:    /blog/articles
     defaults: { _controller: AppBundle:Blog:show }
@@ -25,3 +29,11 @@ admin_article_update:
 admin_article_remove:
     path:    /blog/remove/{id}
     defaults: { _controller: AppBundle:Blog:delete }
+
+tag_add:
+    path:   /tag/add
+    defaults: { _controller: AppBundle:Tag:add }
+
+tag_list:
+    path:   /tag/list
+    defaults: { _controller: AppBundle:Tag:list }

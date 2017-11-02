@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="render">
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.Tag) }}
+
+    {{ form_row(form.Submit) }}
+{{ form_end(form) }}
+</div>
+{% endblock %}

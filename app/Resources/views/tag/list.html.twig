@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for tag in tags %}
+        <div class="tag">
+            <p>Tags: {{ tag.getTag() }}</p>
+            <a href="/blog/articles/{{ tag.id }}">Show Articles By Tag</a>
+        </div>
+    {% endfor %}
+{% endblock %}

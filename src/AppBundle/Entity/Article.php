@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- *  @ORM\Entity
+ *  @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
  */
 class Article {
 
@@ -22,7 +22,7 @@ class Article {
     private $id;
 
     /**
-     * @var tag
+     * @var Tag
      */
     private $tags;
 
@@ -34,8 +34,9 @@ class Article {
 
     /**
      * @var string
-     * @Gedmo\Slug(fields={"title", "id"})
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string")
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="label")
      */
     private $slug;
 
@@ -59,6 +60,13 @@ class Article {
      * @ORM\Column(type="text")
      */
      private $description;
+
+     /**
+      * Article::Constructor
+      */
+     public function __construct() {
+        $this->tags = new ArrayCollection();
+     }
 
     /**
      * Get Id
@@ -101,6 +109,14 @@ class Article {
      }
 
      /**
+      * Get Tags
+      * @return tags
+      */
+     public function getTags() {
+         return $this->tags;
+     }
+
+     /**
       * Set Title
       * @var string
       */
@@ -133,27 +149,10 @@ class Article {
     }
 
     /**
-     * Add Tag
+     * Set Tag
      * @var Tag
      */
-    public function addTag(Tag $tag) {
-        $this->tags[] = $tag;
-        return $this;
-    }
-
-    /**
-     * Remove Tag
-     * @var tag
-     */
-    public function removeTag(Tag $tag) {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Get Tag
-     * @return tag
-     */
-    public function getTag() {
-        return $this->tags;
+    public function setTags(Tag $tag) {
+        $this->tags->add($tag);
     }
 }
