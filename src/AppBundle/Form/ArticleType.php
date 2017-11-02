@@ -15,16 +15,9 @@ class ArticleType extends AbstractType {
      * build form and generate html..
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        // Add form
-        $builder
-        // Title
-        ->add('Title', TextType::class, [
-            'label' => 'Titre'
-        ])
-        // Textarea
-        ->add('Description', TextareaType::class, [
-            'label' => 'Description'
-        ]);
+         $builder
+            ->add('title', TextType::class)
+            ->add('description', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver) {

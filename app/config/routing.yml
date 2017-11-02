@@ -6,10 +6,6 @@ home_show:
     path:      /home
     defaults:  { _controller: AppBundle:Default:home }
 
-hello_the_world: 
-    path:     /hello
-    defaults:  { _controller: AppBundle:Hello:hello }
-
 blog_stop_dev: 
     path:     /blog
     defaults:  { _controller: AppBundle:Blog:create }

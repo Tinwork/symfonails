@@ -26,19 +26,12 @@ class Article {
      */
     private $title;
 
-    /**
-     * @var string
+     /**
+     * @var datetime $created_at
      *
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     */
-     private $content;
 
     /**
      * @var string
@@ -64,14 +57,6 @@ class Article {
      }
 
      /**
-      * Get Title
-      * @return string
-      */
-     public function getContent() {
-         return $this->content;
-     }
-
-     /**
       * Get Description
       * @return string
       */
@@ -81,16 +66,14 @@ class Article {
 
      /**
       * Set Title
-      * @void
       * @var string
       */
      public function setTitle($title) {
-        $this->tilte = $title;
+        $this->title = $title;
     }
 
     /**
       * Set Created At
-      * @void
       * @var string
       */
     public function setCreatedAt($createdAt) {
@@ -98,17 +81,7 @@ class Article {
     }
 
     /**
-      * Set Content
-      * @void
-      * @var string
-      */
-    public function setContent($content) {
-        $this->content = $content;
-    }
-
-    /**
      * Set Description
-     * @void
      * @var string
      */
     public function setDescription($description) {
