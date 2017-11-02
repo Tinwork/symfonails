@@ -17,3 +17,4 @@
 /web/bundles/
 
 docker-compose.yml
+docker/mysql/
