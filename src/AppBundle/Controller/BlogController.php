@@ -3,8 +3,11 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Article;
+use AppBundle\Form\ArticleType;
 
 class BlogController extends controller {
 
@@ -18,7 +21,7 @@ class BlogController extends controller {
     }
 
     /** 
-     * @Route("/", name="front_article_create")
+     * @route("/", name="front_article_create")
      * @Method({"GET", "POST"})
      */
     public function createAction(Request $request) {
@@ -38,7 +41,7 @@ class BlogController extends controller {
             return $this->redirectToRoute('admin_article_index');
         }
 
-        return $this->render('admin/Article/new', [
+        return $this->render('admin/article/new.html.twig', [
             'article' => $article,
             'form' => $form->createView()
         ]);

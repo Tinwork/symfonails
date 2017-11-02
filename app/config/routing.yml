@@ -12,4 +12,4 @@ hello_the_world:
 
 blog_stop_dev: 
     path:     /blog
-    defaults:  { _controller: AppBundle:Blog:index }
+    defaults:  { _controller: AppBundle:Blog:create }

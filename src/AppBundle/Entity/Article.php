@@ -40,12 +40,19 @@ class Article {
      */
      private $content;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(type="text")
+     */
+     private $description;
+
      /**
       * Get Title
       * @return string
       */
      public function getTitle() {
-         return $this->tilte;
+         return $this->title;
      }
 
      /**
@@ -62,6 +69,14 @@ class Article {
       */
      public function getContent() {
          return $this->content;
+     }
+
+     /**
+      * Get Description
+      * @return string
+      */
+     public function getDescription() {
+        return $this->description;
      }
 
      /**
@@ -89,5 +104,14 @@ class Article {
       */
     public function setContent($content) {
         $this->content = $content;
+    }
+
+    /**
+     * Set Description
+     * @void
+     * @var string
+     */
+    public function setDescription($description) {
+        $this->description = $description;
     }
 }
