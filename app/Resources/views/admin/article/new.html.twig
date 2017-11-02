@@ -4,4 +4,14 @@
 <div id="wrapper">
     <p>hello form</p>
 </div>
+<div>
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.Title) }}
+    {{ form_row(form.Content) }}
+
+    {{ form_row(form.Submit) }}
+{{ form_end(form) }}
+</div>
 {% endblock %}

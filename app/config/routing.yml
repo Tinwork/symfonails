@@ -13,3 +13,7 @@ hello_the_world:
 blog_stop_dev: 
     path:     /blog
     defaults:  { _controller: AppBundle:Blog:create }
+
+admin_article_index:
+    path:    /articles
+    defaults: { _controller: AppBundle:Blog:show }

@@ -31,6 +31,8 @@ class BlogController extends controller {
         // Handle request and populate data from the request form into the form
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $article->setCreatedAt();
+            var_dump($article);
             // retrieve the orm system
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
@@ -44,6 +46,22 @@ class BlogController extends controller {
         return $this->render('admin/article/new.html.twig', [
             'article' => $article,
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @route("/blog/show", name="admin_article_index")
+     * @Method({"GET", "POST"})
+     */
+    public function showAction(Request $request) {
+
+        $article = $this->getDoctrine()
+            ->getRepository(Article::Class)
+            ->findAll();
+
+        return $this->render('blog/list.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'articles'  => $article
         ]);
     }
 }

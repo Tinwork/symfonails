@@ -81,25 +81,22 @@ class Article {
 
      /**
       * Set Title
-      * @void
       * @var string
       */
      public function setTitle($title) {
-        $this->tilte = $title;
+        $this->title = $title;
     }
 
     /**
       * Set Created At
-      * @void
       * @var string
       */
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCreatedAt() {
+        $this->createdAt = new \DateTime();
     }
 
     /**
       * Set Content
-      * @void
       * @var string
       */
     public function setContent($content) {
@@ -108,7 +105,6 @@ class Article {
 
     /**
      * Set Description
-     * @void
      * @var string
      */
     public function setDescription($description) {

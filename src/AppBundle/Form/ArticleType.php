@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ArticleType extends AbstractType {
 
@@ -19,11 +20,22 @@ class ArticleType extends AbstractType {
         $builder
         // Title
         ->add('Title', TextType::class, [
-            'label' => 'Titre'
+            'label' => 'Titre',
+            'required' => true
         ])
         // Textarea
+        ->add('Content', TextareaType::class, [
+            'label' => 'Content',
+            'required' => true
+        ])
+        // Description
         ->add('Description', TextareaType::class, [
-            'label' => 'Description'
+            'label' => 'Description',
+            'required' => true
+        ])
+        // Submit
+        ->add('Submit', SubmitType::class, [
+            'label' => 'Ajouter'
         ]);
     }
 
