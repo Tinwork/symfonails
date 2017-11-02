@@ -15,5 +15,13 @@ blog_stop_dev:
     defaults:  { _controller: AppBundle:Blog:create }
 
 admin_article_index:
-    path:    /articles
+    path:    /blog/articles
     defaults: { _controller: AppBundle:Blog:show }
+
+admin_article_update:
+    path:    /blog/update/{id}
+    defaults: { _controller: AppBundle:Blog:update }
+
+admin_article_remove:
+    path:    /blog/remove/{id}
+    defaults: { _controller: AppBundle:Blog:delete }

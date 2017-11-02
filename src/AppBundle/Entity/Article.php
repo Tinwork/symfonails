@@ -3,7 +3,9 @@
 // src/AppBundle/Entity/Article.php
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM; 
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  *  @ORM\Entity
@@ -20,11 +22,22 @@ class Article {
     private $id;
 
     /**
+     * @var tag
+     */
+    private $tags;
+
+    /**
      * @var string
-     *
      * @ORM\Column(type="string")
      */
     private $title;
+
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"title", "id"})
+     * @ORM\Column(type="string")
+     */
+    private $slug;
 
     /**
      * @var string
@@ -46,6 +59,14 @@ class Article {
      * @ORM\Column(type="text")
      */
      private $description;
+
+    /**
+     * Get Id
+     * @return int
+     */
+     public function getId() {
+        return $this->id;
+     }
 
      /**
       * Get Title
@@ -109,5 +130,30 @@ class Article {
      */
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+    /**
+     * Add Tag
+     * @var Tag
+     */
+    public function addTag(Tag $tag) {
+        $this->tags[] = $tag;
+        return $this;
+    }
+
+    /**
+     * Remove Tag
+     * @var tag
+     */
+    public function removeTag(Tag $tag) {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get Tag
+     * @return tag
+     */
+    public function getTag() {
+        return $this->tags;
     }
 }

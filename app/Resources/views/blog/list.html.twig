@@ -4,8 +4,10 @@
     {% for article in articles %}
         <div class="article">
             <p>Titre: {{ article.title }}</p>
-            <p>Content: {{article.content }}</p>
-            <p>Created at: {{article.createdAt.date }}</p>
+            <p>Content: {{ article.content }}</p>
+            <p>Created at: {{ article.createdAt.date }}</p>
+            <a href="/blog/update/{{ article.id }}"/>Edit</a>
+            <a href="/blog/delete/{{ article.id }}">Delete</a>
         </div>
     {% endfor %}
 {% endblock %}
