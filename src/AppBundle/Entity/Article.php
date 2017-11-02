@@ -1,12 +1,14 @@
 <?php
 
-// src/AppBundle/Entity/Article.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *  @ORM\Entity
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
  */
 class Article {
 
