@@ -6,7 +6,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *  @ORM\Entity
+ *  @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
  */
 class Article {
 
@@ -27,7 +27,7 @@ class Article {
     private $title;
 
      /**
-     * @var datetime $created_at
+     * @var string
      *
      * @ORM\Column(type="datetime")
      */
@@ -47,6 +47,22 @@ class Article {
      public function getTitle() {
          return $this->title;
      }
+
+    /**
+     * @var \AppBundle\Entity\Tag
+     * 
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     */
+    private $tags;
+
+     /**
+      * Get Id
+      * @return integer
+      */
+     public function getId() {
+         return $this->id;
+     }
+
 
      /**
       * Get Title
@@ -76,8 +92,12 @@ class Article {
       * Set Created At
       * @var string
       */
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCreatedAt() { 
+        $this->createdAt = new \DateTime(); 
+    } 
+
+    public function gettags() {
+        return $this->tags;
     }
 
     /**
@@ -86,5 +106,12 @@ class Article {
      */
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+    public function addTags(Tag $tags)
+    {
+        $tags->addArticle($this);
+
+        $this->tags->add($tags);
     }
 }

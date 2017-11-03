@@ -9,7 +9,6 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Createdat</th>
-                <th>Content</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
@@ -20,7 +19,6 @@
                 <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
                 <td>{{ article.title }}</td>
                 <td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ article.content }}</td>
                 <td>{{ article.description }}</td>
                 <td>
                     <ul>

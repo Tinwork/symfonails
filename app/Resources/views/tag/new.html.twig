@@ -1,22 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Article creation</h1>
+    <h1>Tag creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-
-        <h3>Tags</h3>
-
-
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    
-
     <ul>
         <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
+            <a href="{{ path('tag_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}
