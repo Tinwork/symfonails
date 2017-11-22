@@ -9,3 +9,6 @@ home_show:
 blog_stop_dev: 
     path:     /blog
     defaults:  { _controller: AppBundle:Blog:create }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
